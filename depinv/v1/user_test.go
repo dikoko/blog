@@ -15,7 +15,7 @@ func TestUserManager(t *testing.T) {
 	var (
 		err error
 		storage = strg.NewStorage()
-		userMan = NewUserManager(storage)
+		userMan = NewManager(storage)
 		testUser = &entity.User{
 			ID: "1",
 			Name: "Diko",

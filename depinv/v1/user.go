@@ -7,20 +7,20 @@ import (
 	"github.com/dikoko/blog/depinv/v1/strg"
 )
 
-// UserManager defines the user data manager.
-type UserManager struct {
+// Manager defines the user data manager.
+type Manager struct {
 	storage strg.Storage
 }
 
-// NewUserManager creates a new UserManager.
-func NewUserManager(storage strg.Storage) *UserManager {
-	return &UserManager{
+// NewManager creates a new Manager.
+func NewManager(storage strg.Storage) *Manager {
+	return &Manager{
 		storage: storage,
 	}
 }
 
 // AddUser adds a user data.
-func (m *UserManager) AddUser(user *entity.User) error {
+func (m *Manager) AddUser(user *entity.User) error {
 	if user == nil || user.ID == "" {
 		return fmt.Errorf("invalid user")
 	}
@@ -28,7 +28,7 @@ func (m *UserManager) AddUser(user *entity.User) error {
 }
 
 // GetUser retrieves a user data.
-func (m *UserManager) GetUser(id string) (*entity.User, error) {
+func (m *Manager) GetUser(id string) (*entity.User, error) {
 	item, err :=  m.storage.Get(id)
 	if err != nil {
 		return nil, err
@@ -41,6 +41,6 @@ func (m *UserManager) GetUser(id string) (*entity.User, error) {
 }
 
 // DeleteUser deletes a user data.
-func (m *UserManager) DeleteUser(id string) error {
+func (m *Manager) DeleteUser(id string) error {
 	return m.storage.Delete(id)
 }
